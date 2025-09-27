@@ -1,4 +1,4 @@
-/* ---- General Page Styling ---- */
+/* ---- Black/Red Theme - General Page Styling ---- */
 * {
     margin: 0;
     padding: 0;
@@ -7,16 +7,45 @@
 }
 
 body {
-    background: linear-gradient(to right, #141E30, #243B55);
-    color: white;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    color: #ffebee;
     text-align: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 30px; /* More padding for better spacing */
-    gap: 30px; /* Increased gap between sections */
+    justify-content: flex-start;
+    padding: 50px 25px;
+    gap: 50px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated background elements */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(200, 0, 0, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.15) 0%, transparent 50%);
+    z-index: -1;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.02);
+    }
 }
 
 /* ---- Header Section ---- */
@@ -24,142 +53,329 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px; /* More space between logo and title */
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
+    gap: 30px;
+    padding: 35px 40px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px) saturate(200%);
+    border-radius: 30px;
     width: 90%;
-    max-width: 800px;
-    animation: fadeIn 1.5s ease-in-out;
-    margin-bottom: 20px; /* Added margin below */
+    max-width: 900px;
+    animation: flameDown 1.4s ease-out;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.top:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(255, 0, 0, 0.3);
+}
+
+.top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.2), transparent);
+    transition: left 1s;
+}
+
+.top:hover::before {
+    left: 100%;
 }
 
 .title {
-    font-size: 2.5em;
-    font-weight: bold;
+    font-size: 3em;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    background: linear-gradient(to right, #ffcc00, #ff6600);
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 50%, #990000 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
-    padding: 10px;
+    text-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+    padding: 15px 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.title:hover {
+    text-shadow: 0 6px 25px rgba(255, 0, 0, 0.7);
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff4444, #cc0000, transparent);
+    border-radius: 3px;
+    animation: flame 2s infinite;
+}
+
+@keyframes flame {
+    0%, 100% { opacity: 0.6; height: 3px; }
+    50% { opacity: 1; height: 5px; }
 }
 
 /* ---- Calculator Box ---- */
 .one-calulation {
     margin-top: 30px;
     text-align: center;
-    padding: 15px; /* Added padding */
+    padding: 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .one-calculation-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: white;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffebee;
     text-transform: uppercase;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 15px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.2) 0%, rgba(139, 0, 0, 0.2) 100%);
+    padding: 20px 35px;
+    border-radius: 20px;
     display: inline-block;
-    backdrop-filter: blur(5px);
-    animation: fadeIn 1.5s ease-in-out;
-    margin-bottom: 15px; /* Added margin below */
+    backdrop-filter: blur(15px);
+    animation: flameIn 1.6s ease-out;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 0 12px 30px rgba(255, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.one-calculation-title:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 0, 0, 0.3);
+}
+
+.one-calculation-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+    transition: left 0.8s;
+}
+
+.one-calculation-title:hover::before {
+    left: 100%;
 }
 
 /* ---- Form Section ---- */
 .one-calulation-form {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 30px; /* More padding for spacing */
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    margin-top: 20px;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(139, 0, 0, 0.1) 100%);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(255, 0, 0, 0.2);
+    margin-top: 25px;
     width: 90%;
-    max-width: 600px;
-    backdrop-filter: blur(8px);
-    animation: fadeInUp 1s ease-in-out;
+    max-width: 800px;
+    backdrop-filter: blur(20px) saturate(200%);
+    animation: flameUp 1.2s ease-out;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Increased gap between form elements */
+    gap: 30px;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.one-calulation-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff4444, #cc0000, #990000, #ff4444);
+    background-size: 200% 100%;
+    animation: redShift 2s linear infinite;
+}
+
+@keyframes redShift {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 /* ---- Table Styling ---- */
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
     overflow: hidden;
-    padding: 10px; /* Added padding */
+    padding: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+table:hover {
+    box-shadow: 0 12px 30px rgba(255, 0, 0, 0.25);
 }
 
 th, td {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 15px;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    padding: 18px;
     text-align: center;
-    color: white;
+    color: #ffebee;
+    transition: all 0.3s ease;
 }
 
 th {
-    background: rgba(255, 255, 255, 0.3);
-    font-weight: bold;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.4) 0%, rgba(139, 0, 0, 0.4) 100%);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 td {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+td:hover {
+    background: rgba(255, 0, 0, 0.1);
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
 }
 
 /* ---- Dropdown (Select) Styling ---- */
 select {
     width: 100%;
-    padding: 12px;
+    padding: 16px;
     border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.2);
-    color: black;
-    font-size: 1rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffebee;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
-    margin-top: 10px; /* Added margin above */
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff4444'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
 }
 
 select:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 0, 0, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+select:focus {
+    outline: none;
+    background: rgba(255, 0, 0, 0.2);
+    box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.6);
 }
 
 /* ---- CGPA Display ---- */
 #cgpa-result {
-    
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffcc00;
-    margin-top: 40px; /* More spacing */
-    padding: 10px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ff4444;
+    margin-top: 50px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(139, 0, 0, 0.15) 100%);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 0, 0, 0.4);
+    box-shadow: 0 12px 30px rgba(255, 0, 0, 0.3);
+    animation: heartbeat 2s infinite;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+#cgpa-result::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+    transition: left 0.8s;
+}
+
+#cgpa-result:hover::before {
+    left: 100%;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.05); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.03); }
 }
 
 /* ---- Submit Button ---- */
 button {
     display: block;
     width: 100%;
-    padding: 15px; /* Increased padding */
-    font-size: 1.2rem;
-    color: white;
-    background: linear-gradient(to right, #ff6600, #ffcc00);
+    padding: 20px;
+    font-size: 1.4rem;
+    color: #0a0a0a;
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 50%, #990000 100%);
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
-    margin-top: 20px; /* Increased margin */
-    transition: 0.3s ease-in-out;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 35px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 800;
+    box-shadow: 0 12px 30px rgba(255, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.8s;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 button:hover {
-    background: linear-gradient(to right, #ffcc00, #ff6600);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px rgba(255, 204, 0, 0.3);
+    background: linear-gradient(135deg, #990000 0%, #cc0000 50%, #ff4444 100%);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255, 0, 0, 0.6);
+    color: #0a0a0a;
+}
+
+button:active {
+    transform: translateY(-4px) scale(1.02);
 }
 
 /* ---- Responsive Design ---- */
@@ -167,37 +383,90 @@ button:hover {
     .top {
         flex-direction: column;
         text-align: center;
-        padding: 20px;
-        gap: 15px; /* Adjusted spacing */
+        padding: 30px;
+        gap: 20px;
     }
 
     .title {
-        font-size: 2em;
+        font-size: 2.4em;
     }
 
     .one-calulation-form {
-        width: 100%;
-        padding: 20px; /* Adjusted for small screens */
-        gap: 15px;
+        width: 95%;
+        padding: 30px;
+        gap: 25px;
+    }
+    
+    .one-calculation-title {
+        font-size: 2rem;
+        padding: 18px 30px;
+    }
+    
+    th, td {
+        padding: 15px;
+    }
+    
+    button {
+        padding: 18px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 30px 15px;
+        gap: 40px;
+    }
+    
+    .title {
+        font-size: 2em;
+    }
+    
+    .one-calculation-title {
+        font-size: 1.6rem;
+        padding: 15px 25px;
+    }
+    
+    .one-calulation-form {
+        padding: 25px;
+    }
+    
+    table {
+        font-size: 0.95rem;
+    }
+    
+    th, td {
+        padding: 12px 10px;
     }
 }
 
 /* ---- Animations ---- */
-@keyframes fadeIn {
+@keyframes flameDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-60px) scale(0.9);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
-@keyframes fadeInUp {
+@keyframes flameIn {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: scale(0.8) rotateX(-90deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateX(0);
+    }
+}
+
+@keyframes flameUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
     }
     to {
         opacity: 1;
