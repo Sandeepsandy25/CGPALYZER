@@ -1,4 +1,4 @@
-/* ---- General Page Styling ---- */
+/* ---- Black/Red Theme - General Page Styling ---- */
 * {
     margin: 0;
     padding: 0;
@@ -7,14 +7,37 @@
 }
 
 body {
-    background: linear-gradient(to right, #141E30, #243B55);
-    color: white;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    color: #ffebee;
     text-align: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated background elements */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 0, 0, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(200, 0, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%);
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.03); }
 }
 
 /* ---- Header Section ---- */
@@ -22,36 +45,92 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
+    gap: 25px;
+    padding: 30px 35px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(200%);
+    border-radius: 25px;
     width: 90%;
     max-width: 1000px;
-    margin-bottom: 30px;
-    animation: fadeIn 1.5s ease-in-out;
+    margin-bottom: 50px;
+    animation: slideDown 1.2s ease-out;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 0 15px 35px rgba(255, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(255, 0, 0, 0.3);
+}
+
+.top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.15), transparent);
+    transition: left 0.8s;
+}
+
+.top:hover::before {
+    left: 100%;
 }
 
 .logo {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    transition: transform 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(255, 100, 100, 0.5);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .logo:hover {
-    transform: scale(1.1);
+    transform: scale(1.2) rotate(8deg);
+    border-color: rgba(255, 100, 100, 0.8);
+    box-shadow: 0 12px 35px rgba(255, 100, 100, 0.5);
 }
 
 .title {
-    font-size: 2.5em;
-    font-weight: bold;
+    font-size: 3.2em;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    background: linear-gradient(to right, #ffcc00, #ff6600);
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 50%, #990000 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
+    text-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    position: relative;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+}
+
+.title:hover {
+    text-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 15%;
+    width: 70%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #ff4444, #cc0000, transparent);
+    border-radius: 4px;
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
 /* ---- Semester Boxes ---- */
@@ -59,129 +138,229 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
+    padding: 30px;
     width: 90%;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 .sems-box {
-    width: fit-content;
-    height: fit-content;
+    width: 240px;
+    height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    color: white;
-    font-size: 1.5em;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 100, 100, 0.1) 100%);
+    backdrop-filter: blur(15px) saturate(200%);
+    color: #ffebee;
+    font-size: 1.6em;
     font-weight: bold;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
     text-decoration: none;
-    transition: transform 0.3s ease, background 0.3s;
-    padding: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.sems-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+    transition: left 0.8s;
+}
+
+.sems-box:hover::before {
+    left: 100%;
 }
 
 .sems-box:hover {
-    transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 15px rgba(255, 255, 255, 0.3);
-    color: #141E30;
+    transform: translateY(-12px) scale(1.08);
+    background: linear-gradient(135deg, rgba(255, 100, 100, 0.2) 0%, rgba(255, 0, 0, 0.2) 100%);
+    box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
+    color: #ff4444;
+    border-color: rgba(255, 100, 100, 0.6);
 }
-.sems-box h1{
-    font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+.sems-box h1 {
+    font-size: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    z-index: 1;
+    transition: all 0.3s;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+
+.sems-box:hover h1 {
+    text-shadow: 0 0 15px rgba(255, 100, 100, 0.8);
+    transform: scale(1.1);
+}
+
 /* ---- Responsive Design ---- */
 @media (max-width: 768px) {
     .top {
-        display: flex;
-       margin-top: 25px;
+        flex-direction: column;
+        margin-top: 30px;
         text-align: center;
-        padding: 15px;
+        padding: 25px;
+        gap: 20px;
     }
     
     .title {
-        font-size: 2em;
+        font-size: 2.4em;
+        letter-spacing: 3px;
+    }
+    
+    .logo {
+        width: 80px;
+        height: 80px;
     }
 
     .sems-container {
         flex-direction: column;
         align-items: center;
+        gap: 25px;
     }
 
     .sems-box {
-        width: 90%;
+        width: 95%;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2em;
+    }
+    
+    .sems-box h1 {
+        font-size: 32px;
     }
 }
 
 /* ---- Animations ---- */
-@keyframes fadeIn {
+@keyframes slideDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-50px) scale(0.9);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3); }
+    50% { box-shadow: 0 15px 35px rgba(255, 0, 0, 0.5); }
+}
+
 /* ---- Footer Section ---- */
 .footer {
     width: 90%;
     max-width: 1000px;
-    margin-top: 40px;
-    padding: 20px;
+    margin-top: 60px;
+    padding: 30px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    animation: fadeInUp 1.5s ease-in-out;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(200%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+    animation: slideUp 1.5s ease-out;
+    border: 1px solid rgba(255, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ff4444, #cc0000, #990000, #ff4444);
+    background-size: 200% 100%;
+    animation: gradientShift 3s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 .footer p {
-    margin: 8px 0;
-    font-size: 15px;
-    color: #fff;
-    transition: transform 0.3s ease, color 0.3s ease;
+    margin: 12px 0;
+    font-size: 17px;
+    color: #ffebee;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .footer a {
-    color: #ffcc00;
+    color: #ff4444;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #cc0000;
+    transition: width 0.3s ease;
 }
 
 .footer a:hover {
-    color: #ff6600;
-    text-shadow: 0px 0px 8px #ff6600;
+    color: #cc0000;
+    text-shadow: 0 0 10px rgba(255, 100, 100, 0.7);
+    background: rgba(255, 100, 100, 0.1);
+}
+
+.footer a:hover::after {
+    width: 100%;
 }
 
 .footer .highlight {
-    background: linear-gradient(to right, #ffcc00, #ff6600);
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
-    font-weight: bold;
+    font-weight: 800;
+    text-shadow: 0 2px 15px rgba(255, 0, 0, 0.4);
 }
 
 .footer .copy {
-    font-size: 13px;
-    opacity: 0.7;
+    font-size: 15px;
+    opacity: 0.9;
+    margin-top: 20px;
+    font-style: italic;
 }
 
-/* Hover lift animation */
+/* Hover effects */
 .footer p:hover {
     transform: translateY(-3px);
+    text-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
-/* Fade In Up Animation */
-@keyframes fadeInUp {
+/* Slide Up Animation */
+@keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(60px);
     }
     to {
         opacity: 1;
